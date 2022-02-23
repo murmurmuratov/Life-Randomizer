@@ -12,6 +12,8 @@ class RandomViewController: UIViewController {
     
     private let typeOfRandom: Random
     private var results: [String] = []
+    lazy private var minValue = 1
+    lazy private var maxValue = 100
     
     private var resultsCollectionView: UICollectionView?
     private let explanationLabel = UILabel()
@@ -44,7 +46,7 @@ extension RandomViewController {
         
         let navItem = UINavigationItem(title: typeOfRandom.mainViewText)
         let closeItem = UIBarButtonItem(barButtonSystemItem: .close, target: nil, action: #selector(closeTapped))
-        let clearItem = UIBarButtonItem(title: "Clear", style: .plain, target: nil, action: #selector(clearTapped))
+        let clearItem = UIBarButtonItem(title: "Очистить", style: .plain, target: nil, action: #selector(clearTapped))
         navItem.leftBarButtonItem = closeItem
         navItem.rightBarButtonItem = clearItem
 
@@ -63,7 +65,7 @@ extension RandomViewController {
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 10
         button.layer.cornerCurve = .continuous
-        button.setTitle("Generate", for: .normal)
+        button.setTitle("Генерировать", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(generateButtonTapped), for: .touchUpInside)
@@ -82,6 +84,55 @@ extension RandomViewController {
             constant: -24))
         constraints.append(button.heightAnchor.constraint(
             equalToConstant: 51))
+        
+        // MARK: - Stack View
+        let textFieldsStackView = UIStackView()
+        
+        if typeOfRandom.type == .number {
+            textFieldsStackView.axis = .horizontal
+            textFieldsStackView.alignment = .fill
+            textFieldsStackView.distribution = .fillEqually
+            textFieldsStackView.spacing = 12
+            textFieldsStackView.translatesAutoresizingMaskIntoConstraints = false
+            
+            view.addSubview(textFieldsStackView)
+            
+            // Add constraints
+            constraints.append(textFieldsStackView.leadingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+                constant: 24))
+            constraints.append(textFieldsStackView.trailingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+                constant: -24))
+            constraints.append(textFieldsStackView.bottomAnchor.constraint(
+                equalTo: button.topAnchor,
+                constant: -24))
+            constraints.append(textFieldsStackView.heightAnchor.constraint(
+                equalToConstant: 44))
+            
+            // MARK: - Text Fields
+            let minNumberTextField = UITextField(frame: .zero)
+            minNumberTextField.backgroundColor = UIColor(named: "Result Background Color")
+            minNumberTextField.textAlignment = .center
+            minNumberTextField.layer.cornerRadius = 10
+            minNumberTextField.layer.cornerCurve = .continuous
+            minNumberTextField.keyboardType = .numberPad
+            minNumberTextField.placeholder = "Мин."
+            minNumberTextField.text = String(minValue)
+            minNumberTextField.isUserInteractionEnabled = false
+            textFieldsStackView.addArrangedSubview(minNumberTextField)
+            
+            let maxNumberTextField = UITextField(frame: .zero)
+            maxNumberTextField.backgroundColor = UIColor(named: "Result Background Color")
+            maxNumberTextField.textAlignment = .center
+            maxNumberTextField.layer.cornerRadius = 10
+            maxNumberTextField.layer.cornerCurve = .continuous
+            maxNumberTextField.keyboardType = .numberPad
+            maxNumberTextField.placeholder = "Макс."
+            maxNumberTextField.text = String(maxValue)
+            maxNumberTextField.isUserInteractionEnabled = false
+            textFieldsStackView.addArrangedSubview(maxNumberTextField)
+        }
         
         // MARK: - Collection View
         let layout = UICollectionViewFlowLayout()
@@ -110,9 +161,17 @@ extension RandomViewController {
         constraints.append(resultsCollectionView!.topAnchor.constraint(
             equalTo: navBar.bottomAnchor,
             constant: 13))
-        constraints.append(resultsCollectionView!.bottomAnchor.constraint(
-            equalTo: button.topAnchor,
-            constant: -20))
+        switch typeOfRandom.type {
+        case .yesOrNo:
+            constraints.append(resultsCollectionView!.bottomAnchor.constraint(
+                equalTo: button.topAnchor,
+                constant: -20))
+        case .number:
+            constraints.append(resultsCollectionView!.bottomAnchor.constraint(
+                equalTo: textFieldsStackView.topAnchor,
+                constant: -20))
+        }
+        
         
         // MARK: - Explanation Label
         explanationLabel.text = typeOfRandom.randomViewExplanationLabel
@@ -166,11 +225,11 @@ extension RandomViewController {
         
         switch typeOfRandom.type {
         case .yesOrNo:
-            var resultOptions = ["YES", "NO"]
+            var resultOptions = ["ДА", "НЕТ"]
             resultOptions.shuffle()
-            randomResult = resultOptions.first ?? "YES"
+            randomResult = resultOptions.first ?? "ДА"
         case .number:
-            randomResult = String(Int.random(in: 1...100))
+            randomResult = String(Int.random(in: minValue...maxValue))
         }
         
         results.insert(randomResult, at: 0)
@@ -190,5 +249,11 @@ extension RandomViewController: UICollectionViewDelegate, UICollectionViewDataSo
         cell.configure(label: results[indexPath.row])
         return cell
     }
+}
 
+extension RandomViewController: UITextFieldDelegate {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
 }

@@ -13,7 +13,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
     
     private let resultLabel: UILabel = {
         let label = UILabel()
-        label.text = "YES"
+        label.text = ""
         label.textColor = .label
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 48, weight: .bold)

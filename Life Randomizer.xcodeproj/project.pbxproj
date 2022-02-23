@@ -14,6 +14,7 @@
 		AD7677DF27C2E205003FE4E5 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7677DE27C2E205003FE4E5 /* Random.swift */; };
 		AD7677E127C2E597003FE4E5 /* NaigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7677E027C2E597003FE4E5 /* NaigationViewController.swift */; };
 		AD7677E327C2EC46003FE4E5 /* RandomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7677E227C2EC46003FE4E5 /* RandomViewController.swift */; };
+		ADB50BD827C6488100E6FAED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADB50BD727C6488100E6FAED /* LaunchScreen.storyboard */; };
 		ADCB618B27C4382D00F03160 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCB618A27C4382D00F03160 /* CustomCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		AD7677DE27C2E205003FE4E5 /* Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
 		AD7677E027C2E597003FE4E5 /* NaigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaigationViewController.swift; sourceTree = "<group>"; };
 		AD7677E227C2EC46003FE4E5 /* RandomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomViewController.swift; sourceTree = "<group>"; };
+		ADB50BD727C6488100E6FAED /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ADCB618A27C4382D00F03160 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,8 +63,8 @@
 			isa = PBXGroup;
 			children = (
 				AD7677D927C2DE57003FE4E5 /* Models */,
-				AD7677DA27C2DE61003FE4E5 /* View */,
-				AD7677DD27C2DF2B003FE4E5 /* Controllers */,
+				AD7677DA27C2DE61003FE4E5 /* ViewControllers */,
+				ADB50BD727C6488100E6FAED /* LaunchScreen.storyboard */,
 				AD7677DB27C2DE91003FE4E5 /* Supporting Files */,
 				AD7677DC27C2DEB1003FE4E5 /* Resources */,
 				AD7677D327C2DE2D003FE4E5 /* Info.plist */,
@@ -78,11 +80,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		AD7677DA27C2DE61003FE4E5 /* View */ = {
+		AD7677DA27C2DE61003FE4E5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AD7677E027C2E597003FE4E5 /* NaigationViewController.swift */,
+				AD7677C927C2DE2C003FE4E5 /* MainViewController.swift */,
+				AD7677E227C2EC46003FE4E5 /* RandomViewController.swift */,
+				ADCB618A27C4382D00F03160 /* CustomCollectionViewCell.swift */,
 			);
-			path = View;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		AD7677DB27C2DE91003FE4E5 /* Supporting Files */ = {
@@ -100,17 +106,6 @@
 				AD7677CE27C2DE2D003FE4E5 /* Assets.xcassets */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		AD7677DD27C2DF2B003FE4E5 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				AD7677E027C2E597003FE4E5 /* NaigationViewController.swift */,
-				AD7677C927C2DE2C003FE4E5 /* MainViewController.swift */,
-				AD7677E227C2EC46003FE4E5 /* RandomViewController.swift */,
-				ADCB618A27C4382D00F03160 /* CustomCollectionViewCell.swift */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,6 +166,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADB50BD827C6488100E6FAED /* LaunchScreen.storyboard in Resources */,
 				AD7677CF27C2DE2D003FE4E5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

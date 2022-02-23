@@ -28,19 +28,19 @@ extension Random {
     static func getTypesOfRandom() -> [Random] {
         return [
             Random(type: .yesOrNo,
-                    mainViewText: "Yes or No",
-                    mainViewSecondaryText: "Random value between yes and no options",
+                    mainViewText: "Да или нет",
+                    mainViewSecondaryText: "Случайное значение между вариантами «да» и «нет»",
                     // Need to be unwrapped
                     mainViewIcon: UIImage(systemName: "questionmark")!,
                     segueIdentifier: "yesOrNoSegue",
-                    randomViewExplanationLabel: "Tap the \"Generate\" button"
+                    randomViewExplanationLabel: "Нажмите кнопку «Генерировать»"
             ),
             Random(type: .number,
-                    mainViewText: "Number",
-                    mainViewSecondaryText: "Random value between two numbers",
+                    mainViewText: "Число",
+                    mainViewSecondaryText: "Случайное значение между двумя числами",
                     mainViewIcon: UIImage(systemName: "number")!,
                     segueIdentifier: "numberSegue",
-                    randomViewExplanationLabel: "Enter the values and tap the \"Generate\" button"
+                    randomViewExplanationLabel: "Нажмите кнопку «Генерировать»"
             )
         ]
     }
